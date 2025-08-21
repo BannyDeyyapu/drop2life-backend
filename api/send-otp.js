@@ -1,3 +1,4 @@
+// api/send-otp.js
 import twilio from "twilio";
 
 export default async function handler(req, res) {
@@ -23,9 +24,9 @@ export default async function handler(req, res) {
       body: `Your Drop2Life OTP is: ${otp}`,
     });
 
-    return res.status(200).json({ success: true });
-  } catch (error) {
-    console.error("Twilio error:", error);
-    return res.status(500).json({ success: false, error: error.message });
+    res.status(200).json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, error: err.message });
   }
 }
